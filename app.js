@@ -26,6 +26,10 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.get("/", (req, res) => {
+    res.json({ message: "ok "});
+});
+
 /* Error handler middleware */
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
