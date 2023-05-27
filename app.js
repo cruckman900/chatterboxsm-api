@@ -8,9 +8,9 @@ const hostname = 'chatterboxsm.com';
 const port = 443;
 
 const httpsOptions = {
-    cert: fs.readFileSync('../ssl/chatterboxsm_com_bc628_1eabf_1713225599_75050718bfe1dcd31d8344ee1288ccd0.crt'),
-    ca: fs.readFileSync('../ssl/chatterboxsm.ca-bundle'),
-    key: fs.readFileSync('../ssl/bc628_1eabf_67882214ef7f1f520fb7b66e099e742c.key')
+    cert: fs.readFileSync('./ssl/api.crt'),
+    ca: fs.readFileSync('./ssl/api.ca-bundle'),
+    key: fs.readFileSync('./ssl/api.key')
 };
 
 const app = express();
