@@ -1,0 +1,23 @@
+/*  activities
+    id:                     INT
+    userid:                 INT
+    archery_guns            TINYINT
+    arts_crafts             TINYINT
+    bars_crafts             TINYINT
+    boating_wrestling       TINYINT
+    classicsports           TINYINT
+    cycling                 TINYINT
+    fishing_hunting         TINYINT
+    hiking_climbing         TINYINT
+    machines_electronics    TINYINT
+    martialarts             TINYINT
+    musicalinstruments      TINYINT
+    puzzles_games           TINYINT
+    reading_writing         TINYINT
+    singing_dancing         TINYINT
+    swimming                TINYINT
+    videogames              TINYINT
+    walking_running         TINYINT
+    watchingtv              TINYINT
+    other                   TINYINT
+*/
