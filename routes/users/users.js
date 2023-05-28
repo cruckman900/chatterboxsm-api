@@ -9,4 +9,5 @@
     username:               VARCHAR(45)
     password:               VARCHAR(45)
     description:            VARCHAR(8000)
+    validated:              TINYINT
 */

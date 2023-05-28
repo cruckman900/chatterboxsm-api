@@ -1,19 +1,25 @@
+const dotenv = require('dotenv').config({ debug: true });
+
 const fs = require('fs');
+const http = require('http');
 const https = require('https');
 const express = require('express');
+const subdomain = require('express-subdomain');
 const cors = require('cors');
 
+const router = express.Router();
 const hostname = 'chatterboxsm.com';
 
-const port = 443;
-
 const httpsOptions = {
-    cert: fs.readFileSync('./ssl/api.crt'),
-    ca: fs.readFileSync('./ssl/api.ca-bundle'),
-    key: fs.readFileSync('./ssl/api.key')
+    cert: fs.readFileSync(process.env.cert),
+    ca: fs.readFileSync(process.env.ca),
+    key: fs.readFileSync(process.env.key)
 };
 
 const app = express();
+const port = process.env.port;
+
+app.use(subdomain('api', router))
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, }));
@@ -26,27 +32,30 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get("/", (req, res) => {
-    res.json({ message: "ok "});
-});
-
 /* Error handler middleware */
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     console.error(err.message, err.stack);
-    res.status(statusCode).json({ message: err.message });
+    res.status(statusCode).json({ message: err.message, stack: err.stack });
     return;
 });
-
-const httpsServer = https.createServer(httpsOptions, app);
 
 // Application Code HERE
 /* _____________________________________________________________________________________________________________ */
 
-// app.get("/", (req, res) => {
-//     res.json({ message: "ok" });
-// });
+app.get("/", (req, res) => {
+    res.json({ message: "I love you, Alexa!!" });
+});
 
 /* _____________________________________________________________________________________________________________ */
 
-httpsServer.listen(port, hostname);
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(httpsOptions, app);
+
+httpServer.listen(8080, () => {
+    console.log(`HTTP Server running at http://api.chatterboxsm.com:8080`);
+})
+
+httpsServer.listen(port, hostname, () => {
+    console.log(`HTTPS Server running at https://api.chatterboxsm.com:${port};`);
+});
