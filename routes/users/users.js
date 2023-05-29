@@ -2,15 +2,41 @@ const express = require('express');
 const router = express.Router();
 const users = require('../../services/users/users');
 
-/* GET users */
+/* GET user */
 router.get('/', async function(req, res, next) {
+    console.log(req.query);
     try {
-        res.json(await users.getMultiple(req.query.page));
+        if (req.query.id) {
+            res.json(await users.getByID(req.query.id));
+        } else if (req.query.username && req.query.password) {
+            res.json(await users.getByUsernameAndPassword(req.query.username, req.query.password));
+        } else {
+            res.json(await users.getMultiple(req.query.page));
+        }
     } catch (err) {
-        console.log(`Error while getting users `, err.message);
+        console.log(`Error while getting user `, err.message);
         next(err);
     }
 });
+
+// router.get('/:username&:password', async function(req, res, next) {
+//     try {
+//         res.json(await users.getByUsernameAndPassword(req.params.username, req.params.password));
+//     } catch (err) {
+//         console.log(`Error while getting user `, err.message);
+//         next(err);
+//     }
+// });
+
+/* GET users */
+// router.get('/', async function(req, res, next) {
+//     try {
+//         res.json(await users.getMultiple(req.query.page));
+//     } catch (err) {
+//         console.log(`Error while getting users `, err.message);
+//         next(err);
+//     }
+// });
 
 /* POST users */
 router.post('/', async function(req, res, next) {
@@ -18,7 +44,7 @@ router.post('/', async function(req, res, next) {
         console.log(req.body);
         res.json(await users.create(req.body));
     } catch (err) {
-        console.error(`Error while creating users`, err.message);
+        console.error(`Error while creating users `, err.message);
         next(err);
     }
 });

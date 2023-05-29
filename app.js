@@ -19,6 +19,8 @@ const httpsOptions = {
 const app = express();
 const port = process.env.port;
 
+const usersRouter = require("./routes/users/users");
+
 app.use(subdomain('api', router))
 app.use(cors());
 app.use(express.json());
@@ -46,6 +48,8 @@ app.use((err, req, res, next) => {
 app.get("/", (req, res) => {
     res.json({ message: "I love you, Alexa!!" });
 });
+
+app.use("/users", usersRouter);
 
 /* _____________________________________________________________________________________________________________ */
 

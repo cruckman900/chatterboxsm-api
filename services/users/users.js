@@ -1,27 +1,111 @@
 const db = require('../db');
 const helper = require('../../helper');
 const config = require('../../config');
-/*  users
-    id:                     INT
-    firstname:              VARCHAR(45)
-    middlename:             VARCHAR(45)
-    lastname:               VARCHAR(45)
-    screenname:             VARCHAR(45)
-    agerange:               VARCHAR(10)
-    gender:                 VARCHAR(6)
-    username:               VARCHAR(45)
-    password:               VARCHAR(45)
-    description:            VARCHAR(8000)
-    validated:              TINYINT
-*/
+
+async function getByID(id) {
+    const sql = `SELECT u.id, u.firstname, u.middlename, u.lastname, u.screenname, u.email, 
+    u.agerange, u.gender, u.username, u.password, u.description, u.verificationcode, u.validated, 
+    l.city, l.state, l.country, 
+    ss.avatar, ss.primarycolor, ss.secondarycolor, 
+    act.archery_guns, act.arts_crafts, act.bars_clubs, act.boxing_wrestling, act.billiards_darts, 
+    act.boating_camping, act.classicsports, act.cycling, act.fishing_hunting, act.hiking_climbing, 
+    act.machines_electronics, act.martialarts, act.musicalinstruments ,act.puzzles_games, 
+    act.reading_writing, act.singing_dancing, act.swimming, act.videogames, act.walking_running, 
+    act.watchingtv, act.other as activities_other, 
+    f.american, f.asian_indian, f.cajun, f.hungarian, f.italian, f.mediterranean, f.latin_mexican, 
+    f.russian, f.middleeastern, f.slavic, f.romanian, f.other as foods_other, 
+    mov.action, mov.comedy, mov.comics_animation, mov.documentary, mov.drama, mov.history, mov.mystery, 
+    mov.nature, mov.news_worldaffairs, mov.religion, mov.romance, mov.scifi, mov.sports, 
+    mov.suspense_thriller, mov.other as movies_other, 
+    mus.americanpop, mus.classical, mus.country_bluegrass, mus.flamenco_mariachi, mus.folk, mus.jazz, 
+    mus.jpop_kpop, mus.metal, mus.polka, mus.rap_hiphop, mus.regae, mus.rock, mus.tribal, mus.other as music_other, 
+    tech.digitalart_media, tech.gamedevelopment, tech.officesoftwareproficiency, tech.softwaredevelopment, 
+    tech.technicalwriting, tech.other as tech_other 
+    FROM users u 
+        LEFT JOIN locations l ON u.id = l.userid
+        LEFT JOIN systemsettings ss ON u.id = ss.userid 
+        LEFT JOIN activities act ON u.id = act.userid 
+        LEFT JOIN foods f ON u.id = f.userid 
+        LEFT JOIN movies mov ON u.id = mov.userid 
+        LEFT JOIN music mus ON u.id = mus.userid 
+        LEFT JOIN technicalaptitude tech ON u.id = tech.userid 
+    WHERE u.id=${id};`;
+
+    console.log(sql);
+
+    const result = await db.query(sql);
+
+    return result;
+}
+
+async function getByUsernameAndPassword(username, password) {
+    console.log(username + " " + password);
+    const sql = `SELECT u.id, u.firstname, u.middlename, u.lastname, u.screenname, u.email, 
+    u.agerange, u.gender, u.username, u.password, u.description, u.verificationcode, u.validated, 
+    l.city, l.state, l.country, 
+    ss.avatar, ss.primarycolor, ss.secondarycolor, 
+    act.archery_guns, act.arts_crafts, act.bars_clubs, act.boxing_wrestling, act.billiards_darts, 
+    act.boating_camping, act.classicsports, act.cycling, act.fishing_hunting, act.hiking_climbing, 
+    act.machines_electronics, act.martialarts, act.musicalinstruments ,act.puzzles_games, 
+    act.reading_writing, act.singing_dancing, act.swimming, act.videogames, act.walking_running, 
+    act.watchingtv, act.other as activities_other, 
+    f.american, f.asian_indian, f.cajun, f.hungarian, f.italian, f.mediterranean, f.latin_mexican, 
+    f.russian, f.middleeastern, f.slavic, f.romanian, f.other as foods_other, 
+    mov.action, mov.comedy, mov.comics_animation, mov.documentary, mov.drama, mov.history, mov.mystery, 
+    mov.nature, mov.news_worldaffairs, mov.religion, mov.romance, mov.scifi, mov.sports, 
+    mov.suspense_thriller, mov.other as movies_other, 
+    mus.americanpop, mus.classical, mus.country_bluegrass, mus.flamenco_mariachi, mus.folk, mus.jazz, 
+    mus.jpop_kpop, mus.metal, mus.polka, mus.rap_hiphop, mus.regae, mus.rock, mus.tribal, mus.other as music_other, 
+    tech.digitalart_media, tech.gamedevelopment, tech.officesoftwareproficiency, tech.softwaredevelopment, 
+    tech.technicalwriting, tech.other as tech_other 
+    FROM users u 
+        LEFT JOIN locations l ON u.id = l.userid
+        LEFT JOIN systemsettings ss ON u.id = ss.userid 
+        LEFT JOIN activities act ON u.id = act.userid 
+        LEFT JOIN foods f ON u.id = f.userid 
+        LEFT JOIN movies mov ON u.id = mov.userid 
+        LEFT JOIN music mus ON u.id = mus.userid 
+        LEFT JOIN technicalaptitude tech ON u.id = tech.userid 
+    WHERE u.username="${username}" AND u.password="${password}";`;
+
+    console.log(sql);
+
+    const result = await db.query(sql);
+
+    return result;
+}
+
 async function getMultiple(page = 1) {
     const offset = helper.getOffset(page, config.listPerPage);
-    const rows = await db.query(
-        `SELECT id, firstname, middlename, lastname, screenname, 
-        agerange, gender, username, password, description, validated 
-        FROM users LIMIT ${offset}, ${config.listPerPage};`
-    );
+    const sql = `SELECT u.id, u.firstname, u.middlename, u.lastname, u.screenname, u.email, 
+    u.agerange, u.gender, u.username, u.password, u.description, u.verificationcode, u.validated, 
+    l.city, l.state, l.country, 
+    ss.avatar, ss.primarycolor, ss.secondarycolor, 
+    act.archery_guns, act.arts_crafts, act.bars_clubs, act.boxing_wrestling, act.billiards_darts, 
+    act.boating_camping, act.classicsports, act.cycling, act.fishing_hunting, act.hiking_climbing, 
+    act.machines_electronics, act.martialarts, act.musicalinstruments ,act.puzzles_games, 
+    act.reading_writing, act.singing_dancing, act.swimming, act.videogames, act.walking_running, 
+    act.watchingtv, act.other as activities_other, 
+    f.american, f.asian_indian, f.cajun, f.hungarian, f.italian, f.mediterranean, f.latin_mexican, 
+    f.russian, f.middleeastern, f.slavic, f.romanian, f.other as foods_other, 
+    mov.action, mov.comedy, mov.comics_animation, mov.documentary, mov.drama, mov.history, mov.mystery, 
+    mov.nature, mov.news_worldaffairs, mov.religion, mov.romance, mov.scifi, mov.sports, 
+    mov.suspense_thriller, mov.other as movies_other, 
+    mus.americanpop, mus.classical, mus.country_bluegrass, mus.flamenco_mariachi, mus.folk, mus.jazz, 
+    mus.jpop_kpop, mus.metal, mus.polka, mus.rap_hiphop, mus.regae, mus.rock, mus.tribal, mus.other as music_other, 
+    tech.digitalart_media, tech.gamedevelopment, tech.officesoftwareproficiency, tech.softwaredevelopment, 
+    tech.technicalwriting, tech.other as tech_other 
+    FROM users u 
+        LEFT JOIN locations l ON u.id = l.userid
+        LEFT JOIN systemsettings ss ON u.id = ss.userid 
+        LEFT JOIN activities act ON u.id = act.userid 
+        LEFT JOIN foods f ON u.id = f.userid 
+        LEFT JOIN movies mov ON u.id = mov.userid 
+        LEFT JOIN music mus ON u.id = mus.userid 
+        LEFT JOIN technicalaptitude tech ON u.id = tech.userid 
+    LIMIT ${offset}, ${config.listPerPage};`;
 
+    const rows = await db.query(sql);
     const data = helper.emptyOrRows(rows);
     const meta = {page};
 
@@ -85,6 +169,8 @@ async function remove(id) {
 }
 
 module.exports = {
+    getByID,
+    getByUsernameAndPassword,
     getMultiple,
     create,
     update,
