@@ -1,11 +1,11 @@
 const dotenv = require('dotenv').config();
-console.log(process.env);
+
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 4000;
 
-// const programmingLanguagesRouter = require("./routes/programmingLanguages");
+const usersRouter = require("./routes/users/users");
 
 app.use(cors());
 app.use(express.json());
@@ -31,9 +31,7 @@ app.get("/", (req, res) => {
 // Application Code HERE
 /* _____________________________________________________________________________________________________________ */
 
-// app.use("/programming-languages", programmingLanguagesRouter);
-
-
+app.use("/users", usersRouter);
 
 /* _____________________________________________________________________________________________________________ */
 

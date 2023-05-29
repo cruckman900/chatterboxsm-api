@@ -52,9 +52,7 @@ app.get("/", (req, res) => {
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(httpsOptions, app);
 
-httpServer.listen(8080, () => {
-    console.log(`HTTP Server running at http://api.chatterboxsm.com:8080`);
-})
+httpServer.listen();
 
 httpsServer.listen(port, hostname, () => {
     console.log(`HTTPS Server running at https://api.chatterboxsm.com:${port};`);
