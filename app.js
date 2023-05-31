@@ -6,9 +6,10 @@ const https = require('https');
 const express = require('express');
 const subdomain = require('express-subdomain');
 const cors = require('cors');
+const helmet = require('helmet');
 
 const router = express.Router();
-const hostname = 'chatterboxsm.com';
+const hostname = process.env.hostname;
 
 const httpsOptions = {
     cert: fs.readFileSync(process.env.cert),
@@ -21,8 +22,11 @@ const port = process.env.port;
 
 const usersRouter = require("./routes/users/users");
 
-app.use(subdomain('api', router))
+app.use(subdomain('api', router));
+
 app.use(cors());
+app.use(helmet());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, }));
 
@@ -59,5 +63,5 @@ const httpsServer = https.createServer(httpsOptions, app);
 httpServer.listen();
 
 httpsServer.listen(port, hostname, () => {
-    console.log(`HTTPS Server running at https://api.chatterboxsm.com:${port};`);
+    console.log(`HTTPS Server running at https://api.${hostname}:${port};`);
 });
