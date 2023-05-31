@@ -8,8 +8,8 @@ const subdomain = require('express-subdomain');
 const cors = require('cors');
 const helmet = require('helmet');
 
-const router = express.Router();
 const hostname = process.env.hostname;
+const port = process.env.port;
 
 const httpsOptions = {
     cert: fs.readFileSync(process.env.cert),
@@ -17,8 +17,8 @@ const httpsOptions = {
     key: fs.readFileSync(process.env.key)
 };
 
+const router = express.Router();
 const app = express();
-const port = process.env.port;
 
 const usersRouter = require("./routes/users/users");
 
@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true, }));
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'https://chatterboxsm.com');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.setHeader('Acces-Control-Allow-Headers', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
@@ -63,5 +63,5 @@ const httpsServer = https.createServer(httpsOptions, app);
 httpServer.listen();
 
 httpsServer.listen(port, hostname, () => {
-    console.log(`HTTPS Server running at https://api.${hostname}:${port};`);
+    console.log(`HTTPS Server running at ${hostname}:${port}`);
 });

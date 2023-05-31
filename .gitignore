@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+/ssh
+/ssl
+/schema
 /.pnp
 .pnp.js
 

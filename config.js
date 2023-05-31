@@ -1,11 +1,13 @@
+const dotenv = require('dotenv').config({ debug: true });
+
 const config = {
     db: {
         /* don't expose password or any sensitive info, done only for demo */
-        host: "localhost",
-        port: 3306,
-        database: "chatterboxsm",
-        user: "root",
-        password: "2008WJUGrad",
+        host: process.env.dbhostname,
+        port: process.env.dbport,
+        database: process.env.dbdatabase,
+        user: process.env.dbuser,
+        password: process.env.dbpass,
     },
     listPerPage: 10,
 };
