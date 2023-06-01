@@ -2,9 +2,9 @@ async function query(sql, params) {
     const mariadb = require('mariadb');
     const config = require('../config');
 
-    let connection = null;
+    let connection = await mariadb.createConnection(config.db)
+    
     try {
-        connection = await mariadb.createConnection(config.db);
         const [results, ] = await connection.query(sql, params);
     
         console.log('db query results', results);
