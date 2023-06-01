@@ -17,6 +17,7 @@ router.get('/', async function(req, res, next) {
         next(err);
     }
 });
+
 /* POST users */
 router.post('/', async function(req, res, next) {
     try {

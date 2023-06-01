@@ -2,7 +2,6 @@ const dotenv = require('dotenv').config({ debug: true });
 
 const config = {
     db: {
-        /* don't expose password or any sensitive info, done only for demo */
         host: process.env.dbhostname,
         port: process.env.dbport,
         database: process.env.dbdatabase,

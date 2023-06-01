@@ -20,14 +20,14 @@ const select = `SELECT u.id as USERID, u.firstname, u.middlename, u.lastname, u.
     mus.jpop_kpop, mus.metal, mus.polka, mus.rap_hiphop, mus.regae, mus.rock, mus.tribal, mus.other as music_other, 
     tech.id, tech.digitalart_media, tech.gamedevelopment, tech.officesoftwareproficiency, tech.softwaredevelopment, 
     tech.technicalwriting, tech.other as tech_other 
-    FROM users u 
-        LEFT JOIN locations l ON u.id = l.userid
-        LEFT JOIN systemsettings ss ON u.id = ss.userid 
-        LEFT JOIN activities act ON u.id = act.userid 
-        LEFT JOIN foods f ON u.id = f.userid 
-        LEFT JOIN movies mov ON u.id = mov.userid 
-        LEFT JOIN music mus ON u.id = mus.userid 
-        LEFT JOIN technicalaptitude tech ON u.id = tech.userid`;
+    FROM ${process.env.dbdatabase}.users u 
+        LEFT JOIN ${process.env.dbdatabase}.locations l ON u.id = l.userid
+        LEFT JOIN ${process.env.dbdatabase}.systemsettings ss ON u.id = ss.userid 
+        LEFT JOIN ${process.env.dbdatabase}.activities act ON u.id = act.userid 
+        LEFT JOIN ${process.env.dbdatabase}.foods f ON u.id = f.userid 
+        LEFT JOIN ${process.env.dbdatabase}.movies mov ON u.id = mov.userid 
+        LEFT JOIN ${process.env.dbdatabase}.music mus ON u.id = mus.userid 
+        LEFT JOIN ${process.env.dbdatabase}.technicalaptitude tech ON u.id = tech.userid`;
 
 async function getByID(id) {
     const sql = `${select} WHERE u.id=${id};`;
@@ -66,7 +66,7 @@ async function getMultiple(page = 1) {
 }
 
 async function create(user) {
-    var sql = `INSERT INTO chatterboxsm.users 
+    var sql = `INSERT INTO ${process.env.dbdatabase}.users 
     (firstname, middlename, lastname, screenname, email, agerange, gender, 
     username, password, description, verificationcode, validated) 
     VALUES 
@@ -88,7 +88,7 @@ async function create(user) {
 }
 
 async function update(user) {
-    const sql = `UPDATE users 
+    const sql = `UPDATE ${process.env.dbdatabase}.users 
     SET firstname="${user.data.firstname}", middlename="${user.data.middlename}", lastname="${user.data.lastname}", 
     screenname="${user.data.screenname}", email="${user.data.email}", agerange="${user.data.agerange}", gender="${user.data.gender}", 
     username="${user.data.username}", password="${user.data.password}", description="${user.data.description}", 
@@ -110,7 +110,7 @@ async function update(user) {
 
 async function remove(id) {
     const result = await db.query(
-        `DELETE FROM users WHERE id=${id};`
+        `DELETE FROM ${process.env.dbdatabase}.users WHERE id=${id};`
     );
 
     let message = 'Error in deleting user';
