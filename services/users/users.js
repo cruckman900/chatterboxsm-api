@@ -29,31 +29,30 @@ const select = `SELECT u.id as USERID, u.firstname, u.middlename, u.lastname, u.
         LEFT JOIN ${process.env.dbdatabase}.music mus ON u.id = mus.userid 
         LEFT JOIN ${process.env.dbdatabase}.technicalaptitude tech ON u.id = tech.userid`;
 
+async function getAll() {
+    const sql = `SELECT * FROM users;`;
+
+    const result = await db.query(sql);
+    return result;
+}
+
 async function getByID(id) {
     const sql = `${select} WHERE u.id=${id};`;
 
-    console.log('getByID', sql);
-
     const result = await db.query(sql);
-
     return result;
 }
 
 async function getByUsernameAndPassword(username, password) {
     const sql = `${select} WHERE u.username="${username}" AND u.password="${password}";`;
 
-    console.log('getByUsernameAndPassword', sql);
-
     const result = await db.query(sql);
-
     return result;
 }
 
 async function getMultiple(page = 1) {
     const offset = helper.getOffset(page, config.listPerPage);
     const sql = `${select} LIMIT ${offset}, ${config.listPerPage};`;
-
-    console.log('getMultiple', sql);
 
     const rows = await db.query(sql);
     const data = helper.emptyOrRows(rows);
@@ -74,9 +73,7 @@ async function create(user) {
     "${user.data.email}", "${user.data.agerange}", "${user.data.gender}", "${user.data.username}", "${user.data.password}", 
     "${user.data.description}", ${user.data.verificationcode}, ${user.data.validated});`;
 
-    // console.log('create', sql);
-
-    var result = await db.query(sql);
+    const result = await db.query(sql);
 
     let message = 'Error in creating user';
 
@@ -123,6 +120,7 @@ async function remove(id) {
 }
 
 module.exports = {
+    getAll,
     getByID,
     getByUsernameAndPassword,
     getMultiple,

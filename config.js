@@ -4,9 +4,9 @@ const config = {
     db: {
         host: process.env.dbhostname,
         port: process.env.dbport,
-        database: process.env.dbdatabase,
         user: process.env.dbuser,
         password: process.env.dbpass,
+        database: process.env.dbdatabase,
     },
     listPerPage: 10,
 };

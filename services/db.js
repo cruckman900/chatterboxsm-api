@@ -1,19 +1,15 @@
-async function query(sql, params) {
-    const mariadb = require('mariadb');
-    const config = require('../config');
+const mariadb = require('mariadb');
+const config = require('../config');
 
-    let connection = await mariadb.createConnection(config.db)
-    
-    try {
-        const [results, ] = await connection.query(sql, params);
-    
-        console.log('db query results', results);
-        return results;
-    } catch (err) {
-        throw err;
-    } finally {
-        if (connection) return connection.end();
-    }
+async function query(sql, params) {
+    return new Promise(function(resolve, reject) {
+        mariadb.createConnection(config.db).then(connection => {
+            connection.query(sql, params)
+                .then(rows => resolve(rows))
+                .catch(err => reject(err))
+                .then(() => connection.close());
+        }).catch(err => reject(err))
+    });
 }
 
 module.exports = {

@@ -21,7 +21,7 @@ app.use(cors());
 app.use(helmet());
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true, }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'https://chatterboxsm.com');
