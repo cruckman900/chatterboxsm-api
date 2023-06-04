@@ -1,9 +1,7 @@
 const db = require('../db');
-const helper = require('../../helper');
-const config = require('../../config');
 
-const select = `SELECT u.id as USERID, u.firstname, u.middlename, u.lastname, u.screenname, u.email, 
-    u.agerange, u.gender, u.username, u.password, u.description, u.verificationcode, u.validated, 
+const select = `SELECT u.id as USERID, u.firstname, u.middlename, u.lastname, u.screenname, 
+    u.agerange, u.gender, u.description, u.verificationcode, u.validated, u.isLoggedIn, 
     l.city, l.state, l.country, 
     ss.id, ss.avatar, ss.primarycolor, ss.secondarycolor, 
     act.id, act.archery_guns, act.arts_crafts, act.bars_clubs, act.boxing_wrestling, act.billiards_darts, 
@@ -21,7 +19,7 @@ const select = `SELECT u.id as USERID, u.firstname, u.middlename, u.lastname, u.
     tech.id, tech.digitalart_media, tech.gamedevelopment, tech.officesoftwareproficiency, tech.softwaredevelopment, 
     tech.technicalwriting, tech.other as tech_other 
     FROM ${process.env.dbdatabase}.users u 
-        LEFT JOIN ${process.env.dbdatabase}.locations l ON u.id = l.userid
+        LEFT JOIN ${process.env.dbdatabase}.locations l ON u.id = l.userid 
         LEFT JOIN ${process.env.dbdatabase}.systemsettings ss ON u.id = ss.userid 
         LEFT JOIN ${process.env.dbdatabase}.activities act ON u.id = act.userid 
         LEFT JOIN ${process.env.dbdatabase}.foods f ON u.id = f.userid 
@@ -29,39 +27,39 @@ const select = `SELECT u.id as USERID, u.firstname, u.middlename, u.lastname, u.
         LEFT JOIN ${process.env.dbdatabase}.music mus ON u.id = mus.userid 
         LEFT JOIN ${process.env.dbdatabase}.technicalaptitude tech ON u.id = tech.userid`;
 
+
+function runQuery(sql) {
+    return new Promise(function(resolve, reject) {
+        db.query(sql)
+            .then(result => resolve(result))
+            .catch(err => reject(err));
+    });
+}
+
+async function getUserCount() {
+    const sql =`SELECT COUNT(*) FROM ${process.env.dbdatabase}.users`;
+    return runQuery(sql);
+}
+
+async function getUserCountIsLoggedIn() {
+    const sql = `SELECT COUNT(*) FROM ${process.env.dbdatabase}.users 
+        WHERE isLoggedIn=true`;
+    return runQuery(sql);
+}
+
 async function getAll() {
     const sql = `SELECT * FROM users;`;
-
-    const result = await db.query(sql);
-    return result;
+    return runQuery(sql);
 }
 
 async function getByID(id) {
     const sql = `${select} WHERE u.id=${id};`;
-
-    const result = await db.query(sql);
-    return result;
+    return runQuery(sql);
 }
 
 async function getByUsernameAndPassword(username, password) {
     const sql = `${select} WHERE u.username="${username}" AND u.password="${password}";`;
-
-    const result = await db.query(sql);
-    return result;
-}
-
-async function getMultiple(page = 1) {
-    const offset = helper.getOffset(page, config.listPerPage);
-    const sql = `${select} LIMIT ${offset}, ${config.listPerPage};`;
-
-    const rows = await db.query(sql);
-    const data = helper.emptyOrRows(rows);
-    const meta = {page};
-
-    return {
-        data,
-        meta
-    }
+    return runQuery(sql);
 }
 
 async function create(user) {
@@ -72,16 +70,7 @@ async function create(user) {
     ("${user.data.firstname}", "${user.data.middlename}", "${user.data.lastname}", "${user.data.screenname}", 
     "${user.data.email}", "${user.data.agerange}", "${user.data.gender}", "${user.data.username}", "${user.data.password}", 
     "${user.data.description}", ${user.data.verificationcode}, ${user.data.validated});`;
-
-    const result = await db.query(sql);
-
-    let message = 'Error in creating user';
-
-    if (result) {
-        message = 'User created successfully';
-    }
-
-    return result;
+    return runQuery(sql);
 }
 
 async function update(user) {
@@ -89,41 +78,24 @@ async function update(user) {
     SET firstname="${user.data.firstname}", middlename="${user.data.middlename}", lastname="${user.data.lastname}", 
     screenname="${user.data.screenname}", email="${user.data.email}", agerange="${user.data.agerange}", gender="${user.data.gender}", 
     username="${user.data.username}", password="${user.data.password}", description="${user.data.description}", 
-    verificationcode=${user.data.verificationcode}, validated=${user.data.validated}
-    WHERE username="${user.data.username}" AND password="${user.data.password}";`
-
-    // console.log('update', sql);
-
-    const result = await db.query(sql);
-
-    let message = 'Error in updating user';
-
-    if (result.affectedRows) {
-        message = 'User updated successfully';
-    }
-
-    return {message};
+    verificationcode=${user.data.verificationcode}, validated=${user.data.validated}, isLoggedIn=${user.data.isLoggedIn} 
+    WHERE username="${user.data.username}" AND password="${user.data.password}";`;
+    return runQuery(sql);
 }
 
 async function remove(id) {
     const result = await db.query(
         `DELETE FROM ${process.env.dbdatabase}.users WHERE id=${id};`
     );
-
-    let message = 'Error in deleting user';
-
-    if (result.affectedRows) {
-        message = 'User deleted successfully';
-    }
-
-    return {message};
+    return runQuery(sql);
 }
 
 module.exports = {
+    getUserCount,
+    getUserCountIsLoggedIn,
     getAll,
     getByID,
     getByUsernameAndPassword,
-    getMultiple,
     create,
     update,
     remove

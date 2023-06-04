@@ -6,17 +6,35 @@ const users = require('../../services/users/users');
 router.get('/', async function(req, res, next) {
     try {
         if (req.query.action === "getUserByID") {
-            const result = await users.getByID(req.query.id);
-            res.json(result);
+            return new Promise(function() {
+                users.getByID(req.query.id)
+                    .then(result => res.json(result))
+                    .catch(err => res.json(err));
+            })
         } else if (req.query.action === "getUserByUsernameAndPassword") {
-            const result = await users.getByUsernameAndPassword(req.query.username, req.query.password);
-            res.json(result);
-        } else if (req.query.action === 'getAllUsers') {
-            const result = await users.getMultiple(req.query.page);
-            res.json(result);
+            return new Promise(function() {
+                users.getByUsernameAndPassword(req.query.username, req.query.password)
+                    .then(result => res.json(result))
+                    .catch(err => res.json(err));
+            })
+        } else if (req.query.action === 'getCountUsers') {
+            return new Promise(function() {
+                users.getUserCount()
+                    .then(result => res.json(result))
+                    .catch(err => res.json(err));
+            })
+        } else if (req.query.action === 'getCountUsersOnline') {
+            return new Promise(function() {
+                users.getUserCountIsLoggedIn()
+                    .then(result => res.json(result))
+                    .catch(err => res.json(err));
+            })
         } else {
-            const result = await users.getAll();
-            res.json(result);
+            return new Promise(function() {
+                users.getAll()
+                    .then(result => res.json(result))
+                    .catch(err => res.json(err));
+            })
         }
     } catch (err) {
         console.log(`Error while getting user(s) `, err.message);
