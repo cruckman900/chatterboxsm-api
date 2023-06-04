@@ -1,6 +1,7 @@
 const db = require('../db');
 
 const select = `SELECT u.id as USERID, u.firstname, u.middlename, u.lastname, u.screenname, 
+    u.email, u.username, u.password, 
     u.agerange, u.gender, u.description, u.verificationcode, u.validated, u.isLoggedIn, 
     l.id AS LID, l.city, l.state, l.country, 
     ss.id AS SSID, ss.avatar, ss.primarycolor, ss.secondarycolor, 
