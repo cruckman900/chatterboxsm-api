@@ -29,7 +29,7 @@ const select = `SELECT u.id as USERID, u.firstname, u.middlename, u.lastname, u.
 
 
 async function getUserCount() {
-    const sql =`SELECT COUNT(*) FROM ${process.env.dbdatabase}.users`;
+    const sql =`SELECT COUNT(*) AS user_count FROM ${process.env.dbdatabase}.users`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -39,7 +39,7 @@ async function getUserCount() {
 }
 
 async function getUserCountIsLoggedIn() {
-    const sql = `SELECT COUNT(*) FROM ${process.env.dbdatabase}.users 
+    const sql = `SELECT COUNT(*) AS logged_in_user_count FROM ${process.env.dbdatabase}.users 
         WHERE isLoggedIn=true`;
 
     return new Promise(function(resolve, reject) {
