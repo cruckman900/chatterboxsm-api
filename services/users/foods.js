@@ -20,7 +20,7 @@ async function create(foods) {
         VALUES 
         (${foods.data.userid}, ${foods.data.american}, ${foods.data.asian_indian}, 
         ${foods.data.cajun}, ${foods.data.hungarian}, ${foods.data.italian}, 
-        ${foods.data.meditarranean}, ${foods.data.latin_mexican}, ${foods.data.russian}, 
+        ${foods.data.mediterranean}, ${foods.data.latin_mexican}, ${foods.data.russian}, 
         ${foods.data.middleeastern}, ${foods.data.slavic}, ${foods.data.romanian}, 
         ${foods.data.other});`;
 
@@ -36,7 +36,7 @@ async function update(foods) {
         SET userid=${foods.data.userid}, american=${foods.data.american}, 
         asian_indian=${foods.data.asian_indian}, cajun=${foods.data.cajun}, 
         hungarian=${foods.data.hungarian}, italian=${foods.data.italian}, 
-        mediterranean=${foods.data.meditarranean}, latin_mexican=${foods.data.latin_mexican}, 
+        mediterranean=${foods.data.mediterranean}, latin_mexican=${foods.data.latin_mexican}, 
         russian=${foods.data.russian}, middleeastern=${foods.data.middleeastern}, 
         slavic=${foods.data.slavic}, romanian=${foods.data.romanian}, 
         other=${foods.data.other} 
