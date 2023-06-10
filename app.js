@@ -15,6 +15,7 @@ const hostname = process.env.hostname;
 const port = process.env.port;
 
 const usersRouter = require('./routes/users/users');
+const foodsRouter = require('./routes/users/foods');
 
 app.use(subdomain('api', router));
 app.use(cors());
@@ -39,6 +40,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", usersRouter);
+app.use("/foods", foodsRouter);
 
 /* _____________________________________________________________________________________________________________ */
 
