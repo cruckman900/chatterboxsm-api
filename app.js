@@ -17,6 +17,7 @@ const port = process.env.port;
 const usersRouter = require('./routes/users/users');
 const foodsRouter = require('./routes/users/foods');
 const moviesRouter = require('./routes/users/movies');
+const musicRouter = require('/routes/users/music');
 
 app.use(subdomain('api', router));
 app.use(cors());
@@ -37,12 +38,13 @@ app.use(function (req, res, next) {
 /* _____________________________________________________________________________________________________________ */
 
 app.get("/", (req, res) => {
-    res.json({ message: "I love you, Alexa!!" });
+    res.json({ message: "The wheels on the bus go round and round..." });
 });
 
 app.use("/users", usersRouter);
 app.use("/foods", foodsRouter);
 app.use("/movies", moviesRouter);
+app.use("/music", musicRouter);
 
 /* _____________________________________________________________________________________________________________ */
 
