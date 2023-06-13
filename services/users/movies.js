@@ -51,7 +51,7 @@ async function update(movies) {
 }
 
 async function remove(id) {
-    const sql = `DELETE FROM ${process.enf.dbdatabase}.movies WHERE userid=${id};`;
+    const sql = `DELETE FROM ${process.env.dbdatabase}.movies WHERE userid=${id};`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
