@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config({ debug: true });
+require('dotenv').config({ debug: true });
 
 const fs = require('fs');
 const http = require('http');
@@ -17,7 +17,8 @@ const port = process.env.port;
 const usersRouter = require('./routes/users/users');
 const foodsRouter = require('./routes/users/foods');
 const moviesRouter = require('./routes/users/movies');
-const musicRouter = require('/routes/users/music');
+const musicRouter = require('./routes/users/music');
+const activitiesRouter = require('./routes/users/activities');
 
 app.use(subdomain('api', router));
 app.use(cors());
@@ -45,6 +46,7 @@ app.use("/users", usersRouter);
 app.use("/foods", foodsRouter);
 app.use("/movies", moviesRouter);
 app.use("/music", musicRouter);
+app.use("/activities", activitiesRouter);
 
 /* _____________________________________________________________________________________________________________ */
 
