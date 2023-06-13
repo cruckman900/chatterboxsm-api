@@ -14,11 +14,13 @@ const router = express.Router();
 const hostname = process.env.hostname;
 const port = process.env.port;
 
+/* Require Routing files */
 const usersRouter = require('./routes/users/users');
 const foodsRouter = require('./routes/users/foods');
 const moviesRouter = require('./routes/users/movies');
 const musicRouter = require('./routes/users/music');
 const activitiesRouter = require('./routes/users/activities');
+const technicalRouter = require('./routes/users/technical');
 
 app.use(subdomain('api', router));
 app.use(cors());
@@ -35,7 +37,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-// Application Code HERE
+// Request Routing
 /* _____________________________________________________________________________________________________________ */
 
 app.get("/", (req, res) => {
@@ -47,6 +49,7 @@ app.use("/foods", foodsRouter);
 app.use("/movies", moviesRouter);
 app.use("/music", musicRouter);
 app.use("/activities", activitiesRouter);
+app.use("/technical", technicalRouter);
 
 /* _____________________________________________________________________________________________________________ */
 
@@ -58,15 +61,20 @@ app.use((err, req, res, next) => {
     return;
 });
 
+/* SSL certs */
 const httpsOptions = {
     cert: fs.readFileSync(process.env.cert),
     ca: fs.readFileSync(process.env.ca),
     key: fs.readFileSync(process.env.key)
 };
 
+
+/* Create Servers */
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(httpsOptions, app);
 
+
+/* Listen for Requests */
 httpServer.listen();
 
 httpsServer.listen(port, hostname, () => {
