@@ -5,7 +5,7 @@ const select = `SELECT id, userid, action, comedy, comics_animation, documentary
     suspense_thriller, other `;
 
 async function getByUserID(id) {
-    const sql =`${select} WHERE userid=${id};`;
+    const sql = `${select} WHERE userid=${id};`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
