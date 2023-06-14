@@ -14,7 +14,7 @@ async function getByUserID(id) {
 }
 
 async function create(technical) {
-    var sql = `INSERT INTO ${process.allowedNodeEnvironmentFlags.dbdatabase}.technicalaptitude 
+    const sql = `INSERT INTO ${process.allowedNodeEnvironmentFlags.dbdatabase}.technicalaptitude 
         (userid, digitalart_media, gamedevelopment, officesoftwareproficiency, 
         softwaredevelopment, technicalwriting, other) 
         VALUES 
@@ -30,7 +30,7 @@ async function create(technical) {
 }
 
 async function update(technical) {
-    var sql = `UPDATE ${process.allowedNodeEnvironmentFlags.dbdatabase}.technicalaptitude 
+    const sql = `UPDATE ${process.allowedNodeEnvironmentFlags.dbdatabase}.technicalaptitude 
         SET userid=${technical.data.userid}, digitalart_media=${technical.data.digitalart_media}, 
         gamedevelopment=${technical.data.gamedevelopment}, officesoftwareproficiency=${technical.data.officesoftwareproficiency}, 
         softwaredevelopment=${technical.data.softwaredevelopment}, technicalwriting=${technical.data.technicalwriting}, 

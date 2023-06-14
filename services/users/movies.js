@@ -15,7 +15,7 @@ async function getByUserID(id) {
 }
 
 async function create(movies) {
-    var sql = `INSERT INTO ${process.env.dbdatabase}.movies 
+    const sql = `INSERT INTO ${process.env.dbdatabase}.movies 
         (userid, action, comedy, comics_animation, documentary, drama, 
         history, mystery, nature, news_worldaffairs, religion, romance, scifi, sports, 
         suspense_thriller, other) 
@@ -34,7 +34,7 @@ async function create(movies) {
 }
 
 async function update(movies) {
-    var sql = `UPDATE ${process.env.dbdatabase}.movies 
+    const sql = `UPDATE ${process.env.dbdatabase}.movies 
         SET userid=${movies.data.userid}, action=${movies.data.action}, comedy=${movies.data.comedy}, 
         comics_animation=${movies.data.comics_animation}, documentary=${movies.data.documentary}, 
         drama=${movies.data.drama}, history=${movies.data.history}, mystery=${movies.data.mystery}, 

@@ -1,6 +1,6 @@
 const db = require('../db');
 
-const select = `SELECT id, userid, title, description, votes, created_date `;
+const select = `SELECT id, userid, title, description, votes, complete, rejected, created_date `;
 
 async function getAll() {
     return new Promise(function(resolve, reject) {
@@ -22,10 +22,10 @@ async function getByUserID(id) {
 
 async function create(suggestions) {
     var sql = `INSERT INTO ${process.env.dbdatabase}.suggestions 
-        (userid, title, description, votes, created_date) 
+        (userid, title, description, votes, complete, rejected, created_date) 
         VALUES 
         (${suggestions.data.userid}, "${suggestions.data.title}", "${suggestions.data.description}", 
-        ${suggestions.data.votes}, ${suggestions.data.created_date});`;
+        ${suggestions.data.complete}, ${suggestions.data.rejected}, ${suggestions.data.votes}, ${suggestions.data.created_date});`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -37,7 +37,8 @@ async function create(suggestions) {
 async function update(suggestions) {
     var sql = `UPDATE ${process.env.dbdatabase}.suggestions 
         SET userid=${suggestions.data.userid}, title="${suggestions.data.title}", 
-        description="${suggestions.data.description}", votes=${suggestions.data.votes}, 
+        description="${suggestions.data.description}", complete=${suggestions.data.complete}, 
+        rejected=${suggestions.data.rejected}, votes=${suggestions.data.votes}, 
         created_date="${suggestions.data.created_date}";`;
     
     return new Promise(function(resolve, reject) {
@@ -58,6 +59,7 @@ async function remove(id) {
 }
 
 module.exports = {
+    getAll,
     getByUserID,
     create,
     update,

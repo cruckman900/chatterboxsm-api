@@ -22,6 +22,7 @@ const musicRouter = require('./routes/users/music');
 const activitiesRouter = require('./routes/users/activities');
 const technicalRouter = require('./routes/users/technical');
 const suggestionsRouter = require('./routes/users/suggestions');
+const donationsRouter = require('./routes/users/donations');
 
 app.use(subdomain('api', router));
 app.use(cors());
@@ -38,13 +39,10 @@ app.use(function (req, res, next) {
     next();
 });
 
-// Request Routing
-/* _____________________________________________________________________________________________________________ */
-
+/* Request Routing */
 app.get("/", (req, res) => {
-    res.json({ message: "The wheels on the bus go round and round..." });
+    res.json({ message: "Visit https://chatterboxsm.com" });
 });
-
 app.use("/users", usersRouter);
 app.use("/foods", foodsRouter);
 app.use("/movies", moviesRouter);
@@ -52,8 +50,7 @@ app.use("/music", musicRouter);
 app.use("/activities", activitiesRouter);
 app.use("/technical", technicalRouter);
 app.use("/suggestions", suggestionsRouter);
-
-/* _____________________________________________________________________________________________________________ */
+app.use("/donations", donationsRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {

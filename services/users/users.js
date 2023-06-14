@@ -81,7 +81,7 @@ async function getByUsernameAndPassword(username, password) {
 }
 
 async function create(user) {
-    var sql = `INSERT INTO ${process.env.dbdatabase}.users 
+    const sql = `INSERT INTO ${process.env.dbdatabase}.users 
         (firstname, middlename, lastname, screenname, email, agerange, gender, 
         username, password, description, verificationcode, validated) 
         VALUES 
