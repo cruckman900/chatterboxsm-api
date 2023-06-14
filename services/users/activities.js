@@ -16,7 +16,7 @@ async function getByUserID(id) {
 }
 
 async function create(activities) {
-    var sql = `INSERT INTO ${process.env.dbdatabase}.activities 
+    const sql = `INSERT INTO ${process.env.dbdatabase}.activities 
         (userid, archery_guns, arts_crafts, bars_clubs, boxing_wrestling, billiards_darts, 
         boating_camping, classicsports, cycling, fishing_hunting, hiking_climbing, machines_electronics, 
         martialarts, musicalinstruments, puzzles_games, reading_writing, singing_dancing, 
@@ -38,7 +38,7 @@ async function create(activities) {
 }
 
 async function update(activities) {
-    var sql = `UPDATE ${process.env.dbdatabase}.activities 
+    const sql = `UPDATE ${process.env.dbdatabase}.activities 
         SET userid=${activities.data.userid}, archery_guns=${activities.data.archery_guns}, 
         arts_crafts=${activities.data.arts_crafts}, bars_clubs=${activities.data.bars_clubs}, 
         boxing_wrestling=${activities.data.boxing_wrestling}, billiards_darts=${activities.data.billiards_darts}, 

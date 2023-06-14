@@ -14,7 +14,7 @@ async function getByUserID(id) {
 }
 
 async function create(music) {
-    var sql = `INSERT INTO ${process.env.dbdatabase}.music 
+    const sql = `INSERT INTO ${process.env.dbdatabase}.music 
         (userid, americanpop, blues, classical, country_bluegrass, flamenco_mariachi, folk, 
         jazz, jpop_kpop, metal, polka, rap_hiphop, regae, rock, tribal, other) 
         VALUES
@@ -32,7 +32,7 @@ async function create(music) {
 }
 
 async function update(music) {
-    var sql = `UPDATE ${process.allowedNodeEnvironmentFlags.dbdatabase}.music 
+    const sql = `UPDATE ${process.allowedNodeEnvironmentFlags.dbdatabase}.music 
         SET userid=${music.data.userid}, americanpop=${music.data.americanpop}, blues=${music.data.blues}, classical=${music.data.classical}, 
         country_bluegrass=${music.data.country_bluegrass}, flamenco_mariachi=${music.data.flamenco_mariachi}, 
         folk=${music.data.folk}, jazz=${music.data.jazz}, jpop_kpop=${music.data.jpop_kpop}, 

@@ -14,7 +14,7 @@ async function getByUserID(id) {
 }
 
 async function create(foods) {
-    var sql = `INSERT INTO ${process.env.dbdatabase}.foods 
+    const sql = `INSERT INTO ${process.env.dbdatabase}.foods 
         (userid, american, asian_indian, cajun, hungarian, italian, mediterranean, 
         latin_mexican, russian, middleeastern, slavic, romanian, other) 
         VALUES 
@@ -32,7 +32,7 @@ async function create(foods) {
 }
 
 async function update(foods) {
-    var sql = `UPDATE ${process.env.dbdatabase}.foods 
+    const sql = `UPDATE ${process.env.dbdatabase}.foods 
         SET userid=${foods.data.userid}, american=${foods.data.american}, 
         asian_indian=${foods.data.asian_indian}, cajun=${foods.data.cajun}, 
         hungarian=${foods.data.hungarian}, italian=${foods.data.italian}, 

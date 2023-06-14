@@ -21,7 +21,7 @@ async function getByUserID(id) {
 }
 
 async function create(suggestions) {
-    var sql = `INSERT INTO ${process.env.dbdatabase}.suggestions 
+    const sql = `INSERT INTO ${process.env.dbdatabase}.suggestions 
         (userid, title, description, votes, complete, rejected, created_date) 
         VALUES 
         (${suggestions.data.userid}, "${suggestions.data.title}", "${suggestions.data.description}", 
@@ -35,7 +35,7 @@ async function create(suggestions) {
 }
 
 async function update(suggestions) {
-    var sql = `UPDATE ${process.env.dbdatabase}.suggestions 
+    const sql = `UPDATE ${process.env.dbdatabase}.suggestions 
         SET userid=${suggestions.data.userid}, title="${suggestions.data.title}", 
         description="${suggestions.data.description}", complete=${suggestions.data.complete}, 
         rejected=${suggestions.data.rejected}, votes=${suggestions.data.votes}, 
