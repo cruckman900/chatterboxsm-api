@@ -1,6 +1,7 @@
 const db = require('../db');
 
-const select = `SELECT id, userid, city, state, country `;
+const select = `SELECT id, userid, city, state, country 
+    FROM ${process.env.dbdatabase}.locations `;
 
 async function getByUserID(id) {
     const sql = `${select} WHERE userid=${id};`;

@@ -1,7 +1,8 @@
 const db = require('../db');
 
 const select = `id, userid, digitalart_media, gamedevelopment, officesoftwareproficiency, 
-    softwaredevelopment, technicalwriting, other `;
+    softwaredevelopment, technicalwriting, other 
+    FROM ${process.env.dbdatabase}.technicalaptitude `;
 
 async function getByUserID(id) {
     const sql = `${select} WHERE userid-${id};`;

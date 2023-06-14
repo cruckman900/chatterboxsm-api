@@ -2,7 +2,8 @@ const db = require('../db');
 
 const select = `SELECT id, userid, action, comedy, comics_animation, documentary, drama, 
     history, mystery, nature, news_worldaffairs, religion, romance, scifi, sports, 
-    suspense_thriller, other `;
+    suspense_thriller, other 
+    FROM ${process.env.dbdatabase}.movies `;
 
 async function getByUserID(id) {
     const sql = `${select} WHERE userid=${id};`;

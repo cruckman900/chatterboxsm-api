@@ -1,6 +1,7 @@
 const db = require('../db');
 
-const select = `SELECT id, userid, purpose, amount, donation_date`;
+const select = `SELECT id, userid, purpose, amount, donation_date 
+    FROM ${process.env.dbdatabase}.donations `;
 
 async function getAll() {
     return new Promise(function(resolve, reject) {

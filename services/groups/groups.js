@@ -1,6 +1,7 @@
 const db = require('../db');
 
-const select = `SELECT id, groupname, creator, icon, created_date FROM ${process.env.dbdatabase}.dgroups `;
+const select = `SELECT id, groupname, creator, icon, created_date 
+    FROM ${process.env.dbdatabase}.dgroups `;
 
 async function getAll() {
     return new Promise(function(resolve, reject) {

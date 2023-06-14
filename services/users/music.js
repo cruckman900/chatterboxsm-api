@@ -1,7 +1,8 @@
 const db = require('../db');
 
 const select = `SELECT id, userid, americanpop, blues, classical, country_bluegrass, flamenco_mariachi, 
-    folk, jass, jpop_kpop, metal, polka, rap_hiphop, regae, rock, tribal, other `;
+    folk, jass, jpop_kpop, metal, polka, rap_hiphop, regae, rock, tribal, other 
+    FROM ${process.env.dbdatabase}.music `;
 
 async function getByUserID(id) {
     const sql = `${select} WHERE userid=${id};`;
