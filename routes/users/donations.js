@@ -10,7 +10,7 @@ router.get('/', async function(req, res, next) {
                 .then(result => res.json(result))
                 .catch(err => res.json(err));
         });
-    } else if (req.query.action === 'getDonationsByUser') {
+    } else if (req.query.action === 'getDonationsByUserID') {
         return new Promise(function () {
             donations.getByUserID(req.query.userID)
                 .then(result => res.json(result))

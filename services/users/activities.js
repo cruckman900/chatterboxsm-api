@@ -1,4 +1,4 @@
-const db = require('./db');
+const db = require('../db');
 
 const select = `SELECT id, userid, archery_guns, arts_crafts, bars_clubs, boxing_wrestling, 
     billiards_darts, boating_camping, classicsports, cycling, fishing_hunting, hiking_climbing, 
@@ -61,7 +61,7 @@ async function update(activities) {
 }
 
 async function remove(id) {
-    const sql = `DELETE FROM ${process.allowedNodeEnvironmentFlags.dbdatabase}.activities WHERE userid=${id};`;
+    const sql = `DELETE FROM ${process.env.dbdatabase}.activities WHERE userid=${id};`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
