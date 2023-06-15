@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const suggestions = require('../../services.users/suggestions');
+const suggestions = require('../../services/users/suggestions');
 
 /* GET suggestions */
 router.get('/', async function(req, res, next) {
