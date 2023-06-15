@@ -53,10 +53,8 @@ async function getUserCountIsLoggedIn() {
 }
 
 async function getAll() {
-    const sql = `SELECT * FROM ${process.env.dbdatabase}.users;`;
-
     return new Promise(function(resolve, reject) {
-        db.query(sql)
+        db.query(select)
             .then(result => resolve(result))
             .catch(err => reject(err));
     });
