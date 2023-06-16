@@ -1,7 +1,7 @@
 const db = require('../db');
 
 const select = `SELECT id, userid, american, asian_indian, cajun, hungarian, italian, 
-    mediterranean, latin_mexican, russian, middleeastern, slavic, romanian, other, french, cookies, french, cookies 
+    mediterranean, latin_mexican, russian, middleeastern, slavic, romanian, other, french, cookies 
     FROM ${process.env.dbdatabase}.foods `;
 
 async function getByUserID(id) {

@@ -11,7 +11,7 @@ const select = `SELECT u.id as USERID, u.firstname, u.middlename, u.lastname, u.
     act.reading_writing, act.singing_dancing, act.swimming, act.videogames, act.walking_running, 
     act.watchingtv, act.other as activities_other, 
     f.id AS FID, f.american, f.asian_indian, f.cajun, f.hungarian, f.italian, f.mediterranean, f.latin_mexican, 
-    f.russian, f.middleeastern, f.slavic, f.romanian, f.other as foods_other, 
+    f.russian, f.middleeastern, f.slavic, f.romanian, f.other as foods_other, f.french, f.cookies, 
     mov.id AS MOVID, mov.action, mov.comedy, mov.comics_animation, mov.documentary, mov.drama, mov.history, mov.mystery, 
     mov.nature, mov.news_worldaffairs, mov.religion, mov.romance, mov.scifi, mov.sports, 
     mov.suspense_thriller, mov.other as movies_other, 
