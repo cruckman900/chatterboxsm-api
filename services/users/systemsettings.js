@@ -17,9 +17,9 @@ async function create(systemsettings) {
     const sql = `INSERT INTO ${process.env.dbdatabase}.systemsettings 
         (userid, avatar, blurb, primarycolor, secondarycolor) 
         VALUES 
-        (${systemsettings.data.userid}, "${systemsettings.data.avatar}", 
-        "${systemsettings.data.blurb}", "${systemsettings.data.primarycolor}", 
-        "${systemsettings.data.secondarycolor}");`;
+        (${systemsettings.userid}, "${systemsettings.avatar}", 
+        "${systemsettings.blurb}", "${systemsettings.primarycolor}", 
+        "${systemsettings.secondarycolor}");`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -30,9 +30,9 @@ async function create(systemsettings) {
 
 async function update(systemsettings) {
     const sql = `UPDATE ${process.env.dbdatabase}.systemsettings 
-        SET userid=${systemsettings.data.userid}, avatar="${systemsettings.data.avatar}", 
-        blurb="${systemsettings.data.blurb}", primarycolor="${systemsettings.data.primarycolor}", 
-        secondarycolor="${systemsettings.data.secondarycolor}";`;
+        SET userid=${systemsettings.userid}, avatar="${systemsettings.avatar}", 
+        blurb="${systemsettings.blurb}", primarycolor="${systemsettings.primarycolor}", 
+        secondarycolor="${systemsettings.secondarycolor}";`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)

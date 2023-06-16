@@ -23,13 +23,13 @@ async function create(activities) {
         martialarts, musicalinstruments, puzzles_games, reading_writing, singing_dancing, 
         swimming, videogames, walking_running, watchingtv, other) 
         VALUES 
-        (${activities.data.userid}, ${activities.data.archery_guns}, ${activities.data.arts_crafts}, 
-        ${activities.data.bars_clubs}, ${activities.data.boxing_wrestling}, ${activities.data.billiards_darts}, 
-        ${activities.data.boating_camping}, ${activities.data.classicsports}, ${activities.data.cycling}, 
-        ${activities.data.fishing_hunting}, ${activities.data.hiking_climbing}, ${activities.data.machines_electronics}, 
-        ${activities.data.martialarts}, ${activities.data.musicalinstruments}, ${activities.data.puzzles_games}, 
-        ${activities.data.reading_writing}, ${activities.data.singing_dancing}, ${activities.data.swimming}, 
-        ${activities.data.videogames}, ${activities.data.walking_running}, ${activities.data.watchingtv}, ${activities.data.other});`;
+        (${activities.userid}, ${activities.archery_guns}, ${activities.arts_crafts}, 
+        ${activities.bars_clubs}, ${activities.boxing_wrestling}, ${activities.billiards_darts}, 
+        ${activities.boating_camping}, ${activities.classicsports}, ${activities.cycling}, 
+        ${activities.fishing_hunting}, ${activities.hiking_climbing}, ${activities.machines_electronics}, 
+        ${activities.martialarts}, ${activities.musicalinstruments}, ${activities.puzzles_games}, 
+        ${activities.reading_writing}, ${activities.singing_dancing}, ${activities.swimming}, 
+        ${activities.videogames}, ${activities.walking_running}, ${activities.watchingtv}, ${activities.other});`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -40,18 +40,18 @@ async function create(activities) {
 
 async function update(activities) {
     const sql = `UPDATE ${process.env.dbdatabase}.activities 
-        SET userid=${activities.data.userid}, archery_guns=${activities.data.archery_guns}, 
-        arts_crafts=${activities.data.arts_crafts}, bars_clubs=${activities.data.bars_clubs}, 
-        boxing_wrestling=${activities.data.boxing_wrestling}, billiards_darts=${activities.data.billiards_darts}, 
-        boating_camping=${activities.data.boating_camping}, classicsports=${activities.data.classicsports}, 
-        cycling=${activities.data.cycling}, fishing_hunting=${activities.data.fishing_hunting}, 
-        hiking_camping=${activities.data.hiking_climbing}, machines_electronics=${activities.data.machines_electronics}, 
-        martialarts=${activities.data.martialarts}, musicalinstruments=${activities.data.musicalinstruments}, 
-        puzzles_games=${activities.data.puzzles_games}, reading_writing=${activities.data.reading_writing}, 
-        singing_dancing=${activities.data.singing_dancing}, swimming=${activities.data.swimming}, 
-        videogames=${activities.data.videogames}, walking_running=${activities.data.walking_running}, 
-        other=${activities.data.other} 
-        WHERE userid=${activities.data.userid};`;
+        SET userid=${activities.userid}, archery_guns=${activities.archery_guns}, 
+        arts_crafts=${activities.arts_crafts}, bars_clubs=${activities.bars_clubs}, 
+        boxing_wrestling=${activities.boxing_wrestling}, billiards_darts=${activities.billiards_darts}, 
+        boating_camping=${activities.boating_camping}, classicsports=${activities.classicsports}, 
+        cycling=${activities.cycling}, fishing_hunting=${activities.fishing_hunting}, 
+        hiking_camping=${activities.hiking_climbing}, machines_electronics=${activities.machines_electronics}, 
+        martialarts=${activities.martialarts}, musicalinstruments=${activities.musicalinstruments}, 
+        puzzles_games=${activities.puzzles_games}, reading_writing=${activities.reading_writing}, 
+        singing_dancing=${activities.singing_dancing}, swimming=${activities.swimming}, 
+        videogames=${activities.videogames}, walking_running=${activities.walking_running}, 
+        other=${activities.other} 
+        WHERE userid=${activities.userid};`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)

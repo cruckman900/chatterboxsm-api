@@ -25,8 +25,8 @@ async function create(donations) {
     const sql = `INSERT INTO ${process.env.dbdatabase}.donations 
         (userid, purpose, amount, donation_date) 
         VALUES 
-        (${donations.data.userid}, "${donations.data.purpose}", ${donations.data.amount}, 
-        ${donations.data.donation_date});`;
+        (${donations.userid}, "${donations.purpose}", ${donations.amount}, 
+        ${donations.donation_date});`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -37,9 +37,9 @@ async function create(donations) {
 
 async function update(donations) {
     const sql = `UPDATE ${process.env.dbdatabase}.donations 
-        SET userid=${donations.data.userid}, purpose="${donations.data.purpose}", 
-        amount=${donations.data.amount}, donation_date=${donations.data.donation_date} 
-        WHERE userid=${donations.data.donation_date};`;
+        SET userid=${donations.userid}, purpose="${donations.purpose}", 
+        amount=${donations.amount}, donation_date=${donations.donation_date} 
+        WHERE userid=${donations.donation_date};`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)

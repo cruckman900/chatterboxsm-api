@@ -17,8 +17,8 @@ async function create(locations) {
     const sql = `INSERT INTO ${process.env.dbdatabase}.locations 
         (userid, city, state, country)
         VALUES 
-        (${locations.data.userid}, "${locations.data.city}", "${locations.data.state}", 
-        "${locations.data.country}");`;
+        (${locations.userid}, "${locations.city}", "${locations.state}", 
+        "${locations.country}");`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -29,9 +29,9 @@ async function create(locations) {
 
 async function update(locations) {
     const sql = `UPDATE ${process.env.dbdatabase}.locations 
-    SET userid=${locations.data.userid}, city="${locations.data.city}", 
-    state="${locations.data.state}", country="${locations.data.country}" 
-    WHERE userid=${locations.data.userid};`;
+    SET userid=${locations.userid}, city="${locations.city}", 
+    state="${locations.state}", country="${locations.country}" 
+    WHERE userid=${locations.userid};`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)

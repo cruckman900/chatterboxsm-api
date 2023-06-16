@@ -21,11 +21,11 @@ async function create(movies) {
         history, mystery, nature, news_worldaffairs, religion, romance, scifi, sports, 
         suspense_thriller, other) 
         VALUES
-        (${movies.data.userid}, ${movies.data.action}, ${movies.data.comedy}, ${movies.data.comics_animation}, 
-        ${movies.data.documentary}, ${movies.data.drama}, ${movies.data.history}, ${movies.data.mystery}, 
-        ${movies.data.nature}, ${movies.data.news_worldaffairs}, ${movies.data.religion}, 
-        ${movies.data.romance}, ${movies.data.scifi}, ${movies.data.sports}, 
-        ${movies.data.suspense_thriller}, ${movies.data.other});`;
+        (${movies.userid}, ${movies.action}, ${movies.comedy}, ${movies.comics_animation}, 
+        ${movies.documentary}, ${movies.drama}, ${movies.history}, ${movies.mystery}, 
+        ${movies.nature}, ${movies.news_worldaffairs}, ${movies.religion}, 
+        ${movies.romance}, ${movies.scifi}, ${movies.sports}, 
+        ${movies.suspense_thriller}, ${movies.other});`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -36,13 +36,13 @@ async function create(movies) {
 
 async function update(movies) {
     const sql = `UPDATE ${process.env.dbdatabase}.movies 
-        SET userid=${movies.data.userid}, action=${movies.data.action}, comedy=${movies.data.comedy}, 
-        comics_animation=${movies.data.comics_animation}, documentary=${movies.data.documentary}, 
-        drama=${movies.data.drama}, history=${movies.data.history}, mystery=${movies.data.mystery}, 
-        nature=${movies.data.nature}, news_worldaffairs=${movies.data.news_worldaffairs}, religion=${movies.data.religion} 
-        romance=${movies.data.romance}, scifi=${movies.data.scifi}, sports=${movies.data.sports}, 
-        suspense_thriller=${movies.data.suspense_thriller}, other=${movies.data.other} 
-        WHERE userid=${movies.data.userid};`;
+        SET userid=${movies.userid}, action=${movies.action}, comedy=${movies.comedy}, 
+        comics_animation=${movies.comics_animation}, documentary=${movies.documentary}, 
+        drama=${movies.drama}, history=${movies.history}, mystery=${movies.mystery}, 
+        nature=${movies.nature}, news_worldaffairs=${movies.news_worldaffairs}, religion=${movies.religion} 
+        romance=${movies.romance}, scifi=${movies.scifi}, sports=${movies.sports}, 
+        suspense_thriller=${movies.suspense_thriller}, other=${movies.other} 
+        WHERE userid=${movies.userid};`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)

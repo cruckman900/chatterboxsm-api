@@ -85,9 +85,9 @@ async function create(user) {
         (firstname, middlename, lastname, screenname, email, agerange, gender, 
         username, password, description, verificationcode, validated) 
         VALUES 
-        ("${user.data.firstname}", "${user.data.middlename}", "${user.data.lastname}", "${user.data.screenname}", 
-        "${user.data.email}", "${user.data.agerange}", "${user.data.gender}", "${user.data.username}", "${user.data.password}", 
-        "${user.data.description}", ${user.data.verificationcode}, ${user.data.validated});`;
+        ("${user.firstname}", "${user.middlename}", "${user.lastname}", "${user.screenname}", 
+        "${user.email}", "${user.agerange}", "${user.gender}", "${user.username}", "${user.password}", 
+        "${user.description}", ${user.verificationcode}, ${user.validated});`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -98,11 +98,11 @@ async function create(user) {
 
 async function update(user) {
     const sql = `UPDATE ${process.env.dbdatabase}.users 
-        SET firstname="${user.data.firstname}", middlename="${user.data.middlename}", lastname="${user.data.lastname}", 
-        screenname="${user.data.screenname}", email="${user.data.email}", agerange="${user.data.agerange}", gender="${user.data.gender}", 
-        username="${user.data.username}", password="${user.data.password}", description="${user.data.description}", 
-        verificationcode=${user.data.verificationcode}, validated=${user.data.validated}, isLoggedIn=${user.data.isLoggedIn} 
-        WHERE username="${user.data.username}" AND password="${user.data.password}";`;
+        SET firstname="${user.firstname}", middlename="${user.middlename}", lastname="${user.lastname}", 
+        screenname="${user.screenname}", email="${user.email}", agerange="${user.agerange}", gender="${user.gender}", 
+        username="${user.username}", password="${user.password}", description="${user.description}", 
+        verificationcode=${user.verificationcode}, validated=${user.validated}, isLoggedIn=${user.isLoggedIn} 
+        WHERE username="${user.username}" AND password="${user.password}";`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
