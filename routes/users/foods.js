@@ -21,7 +21,7 @@ router.post('/', async function(req, res, next) {
 });
 
 /* PUT foods */
-router.put('/', async function(req,res, next) {
+router.put('/', async function(req, res, next) {
     return new Promise(function() {
         foods.update(req.body)
             .then(result => res.json(result))
