@@ -23,9 +23,9 @@ const activitiesRouter = require('./routes/users/activities');
 const technicalRouter = require('./routes/users/technical');
 const systemsettingsRouter = require('./routes/users/systemsettings');
 const suggestionsRouter = require('./routes/users/suggestions');
-// const donationsRouter = require('./routes/users/donations');
-// const groupsRouter = require('./routes/groups/groups');
-// const communitiesRouter = require('./routes/communities/communities');
+const donationsRouter = require('./routes/users/donations');
+const groupsRouter = require('./routes/groups/groups');
+const communitiesRouter = require('./routes/communities/communities');
 
 app.use(subdomain('api', router));
 app.use(cors());
@@ -54,9 +54,9 @@ app.use("/activities", activitiesRouter);
 app.use("/technical", technicalRouter);
 app.use("/systemsettings", systemsettingsRouter);
 app.use("/suggestions", suggestionsRouter);
-// app.use("/donations", donationsRouter);
-// app.use('/groups', groupsRouter);
-// app.use('/communities', communitiesRouter);
+app.use("/donations", donationsRouter);
+app.use('/groups', groupsRouter);
+app.use('/communities', communitiesRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
