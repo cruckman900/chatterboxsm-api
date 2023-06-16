@@ -19,9 +19,9 @@ async function create(technical) {
         (userid, digitalart_media, gamedevelopment, officesoftwareproficiency, 
         softwaredevelopment, technicalwriting, other) 
         VALUES 
-        (${technical.userid}, ${technical.digitalart_media}, ${technical.gamedevelopment}, 
-        ${technical.officesoftwareproficiency}, ${technical.softwaredevelopment}, 
-        ${technical.technicalwriting}, ${technical.other});`;
+        (${technical.data.userid}, ${technical.data.digitalart_media}, ${technical.data.gamedevelopment}, 
+        ${technical.data.officesoftwareproficiency}, ${technical.data.softwaredevelopment}, 
+        ${technical.data.technicalwriting}, ${technical.data.other});`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -32,11 +32,11 @@ async function create(technical) {
 
 async function update(technical) {
     const sql = `UPDATE ${process.allowedNodeEnvironmentFlags.dbdatabase}.technicalaptitude 
-        SET userid=${technical.userid}, digitalart_media=${technical.digitalart_media}, 
-        gamedevelopment=${technical.gamedevelopment}, officesoftwareproficiency=${technical.officesoftwareproficiency}, 
-        softwaredevelopment=${technical.softwaredevelopment}, technicalwriting=${technical.technicalwriting}, 
-        other=${technical.other} 
-        WHERE userid=${technical.userid};`;
+        SET userid=${technical.data.userid}, digitalart_media=${technical.data.digitalart_media}, 
+        gamedevelopment=${technical.data.gamedevelopment}, officesoftwareproficiency=${technical.data.officesoftwareproficiency}, 
+        softwaredevelopment=${technical.data.softwaredevelopment}, technicalwriting=${technical.data.technicalwriting}, 
+        other=${technical.data.other} 
+        WHERE userid=${technical.data.userid};`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)

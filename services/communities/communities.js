@@ -26,9 +26,9 @@ async function create(communities) {
     const sql = `INSERT INTO ${process.env.dbdatabase}.communities 
         (communityname, creator, category, description, icon, timestamp) 
         VALUES 
-        ("${communities.communityname}", ${communities.creator}, 
-        ${communities.category}, "${communities.description}", 
-        "${communities.icon}", "${communities.timestamp}");`;
+        ("${communities.data.communityname}", ${communities.data.creator}, 
+        ${communities.data.category}, "${communities.data.description}", 
+        "${communities.data.icon}", "${communities.data.timestamp}");`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -39,11 +39,11 @@ async function create(communities) {
 
 async function update(communities) {
     const sql = `UPDATE ${process.env.dbdatabase}.communities 
-        SET communityname="${communities.communityname}", 
-        creator=${communities.creator}, category=${communities.category}, 
-        description="${communities.description}", icon="${communities.icon}", 
-        timestamp="${communities.timestamp}" 
-        WHERE id=${communities.id};`;
+        SET communityname="${communities.data.communityname}", 
+        creator=${communities.data.creator}, category=${communities.data.category}, 
+        description="${communities.data.description}", icon="${communities.data.icon}", 
+        timestamp="${communities.data.timestamp}" 
+        WHERE id=${communities.data.id};`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)

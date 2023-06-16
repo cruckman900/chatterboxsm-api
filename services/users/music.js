@@ -19,11 +19,11 @@ async function create(music) {
         (userid, americanpop, blues, classical, country_bluegrass, flamenco_mariachi, folk, 
         jazz, jpop_kpop, metal, polka, rap_hiphop, regae, rock, tribal, other) 
         VALUES
-        (${music.userid}, ${music.americanpop}, ${music.blues}, ${music.classical}, 
-        ${music.country_bluegrass}, ${music.flamenco_mariachi}, ${music.folk}, 
-        ${music.jazz}, ${music.jpop_kpop}, ${music.metal}, ${music.polka}, 
-        ${music.rap_hiphop}, ${music.regae}, ${music.rock}, 
-        ${music.tribal}, ${music.other});`;
+        (${music.data.userid}, ${music.data.americanpop}, ${music.data.blues}, ${music.data.classical}, 
+        ${music.data.country_bluegrass}, ${music.data.flamenco_mariachi}, ${music.data.folk}, 
+        ${music.data.jazz}, ${music.data.jpop_kpop}, ${music.data.metal}, ${music.data.polka}, 
+        ${music.data.rap_hiphop}, ${music.data.regae}, ${music.data.rock}, 
+        ${music.data.tribal}, ${music.data.other});`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -34,12 +34,12 @@ async function create(music) {
 
 async function update(music) {
     const sql = `UPDATE ${process.allowedNodeEnvironmentFlags.dbdatabase}.music 
-        SET userid=${music.userid}, americanpop=${music.americanpop}, blues=${music.blues}, classical=${music.classical}, 
-        country_bluegrass=${music.country_bluegrass}, flamenco_mariachi=${music.flamenco_mariachi}, 
-        folk=${music.folk}, jazz=${music.jazz}, jpop_kpop=${music.jpop_kpop}, 
-        metal=${music.metal}, polka=${music.polka}, rap_hiphop=${music.rap_hiphop}, 
-        regae=${music.regae}, rock=${music.rock}, tribal=${music.tribal}, other=${music.other} 
-        WHERE userid=${music.userid};`;
+        SET userid=${music.data.userid}, americanpop=${music.data.americanpop}, blues=${music.data.blues}, classical=${music.data.classical}, 
+        country_bluegrass=${music.data.country_bluegrass}, flamenco_mariachi=${music.data.flamenco_mariachi}, 
+        folk=${music.data.folk}, jazz=${music.data.jazz}, jpop_kpop=${music.data.jpop_kpop}, 
+        metal=${music.data.metal}, polka=${music.data.polka}, rap_hiphop=${music.data.rap_hiphop}, 
+        regae=${music.data.regae}, rock=${music.data.rock}, tribal=${music.data.tribal}, other=${music.data.other} 
+        WHERE userid=${music.data.userid};`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)

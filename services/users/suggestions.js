@@ -25,8 +25,8 @@ async function create(suggestions) {
     const sql = `INSERT INTO ${process.env.dbdatabase}.suggestions 
         (userid, title, description, votes, complete, rejected, created_date) 
         VALUES 
-        (${suggestions.userid}, "${suggestions.title}", "${suggestions.description}", 
-        ${suggestions.complete}, ${suggestions.rejected}, ${suggestions.votes}, ${suggestions.created_date});`;
+        (${suggestions.data.userid}, "${suggestions.data.title}", "${suggestions.data.description}", 
+        ${suggestions.data.complete}, ${suggestions.data.rejected}, ${suggestions.data.votes}, ${suggestions.data.created_date});`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -37,10 +37,10 @@ async function create(suggestions) {
 
 async function update(suggestions) {
     const sql = `UPDATE ${process.env.dbdatabase}.suggestions 
-        SET userid=${suggestions.userid}, title="${suggestions.title}", 
-        description="${suggestions.description}", complete=${suggestions.complete}, 
-        rejected=${suggestions.rejected}, votes=${suggestions.votes}, 
-        created_date="${suggestions.created_date}";`;
+        SET userid=${suggestions.data.userid}, title="${suggestions.data.title}", 
+        description="${suggestions.data.description}", complete=${suggestions.data.complete}, 
+        rejected=${suggestions.data.rejected}, votes=${suggestions.data.votes}, 
+        created_date="${suggestions.data.created_date}";`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)

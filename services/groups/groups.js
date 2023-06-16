@@ -25,8 +25,8 @@ async function create(groups) {
     const sql = `INSERT INTO ${process.env.dbdatabase}.groups 
         (groupname, creator, icon, created_date) 
         VALUES 
-        ("${groups.groupname}", ${groups.creator}, "${groups.icon}", 
-        "${groups.created_date}");`;
+        ("${groups.data.groupname}", ${groups.data.creator}, "${groups.data.icon}", 
+        "${groups.data.created_date}");`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -37,9 +37,9 @@ async function create(groups) {
 
 async function update(groups) {
     const sql = `UPDATE ${process.env.dbdatabase}.groups 
-        SET groupname="${groups.groupname}", creator=${groups.creator}, 
-        icon="${groups.icon}", created_date="${groups.created_date}" 
-        WHERE id=${groups.id};`;
+        SET groupname="${groups.data.groupname}", creator=${groups.data.creator}, 
+        icon="${groups.data.icon}", created_date="${groups.data.created_date}" 
+        WHERE id=${groups.data.id};`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
