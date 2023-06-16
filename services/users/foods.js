@@ -19,11 +19,11 @@ async function create(foods) {
         (userid, american, asian_indian, cajun, hungarian, italian, mediterranean, 
         latin_mexican, russian, middleeastern, slavic, romanian, other, french, cookies, french, cookies) 
         VALUES 
-        (${food.data.userid}, ${food.data.american}, ${food.data.asian_indian}, 
-        ${food.data.cajun}, ${food.data.hungarian}, ${food.data.italian}, 
-        ${food.data.mediterranean}, ${food.data.latin_mexican}, ${food.data.russian}, 
-        ${food.data.middleeastern}, ${food.data.slavic}, ${food.data.romanian}, 
-        ${food.data.other}, ${food.data.french}, ${food.data.cookies}, ${food.data.french}, ${food.data.cookies});`;
+        (${foods.data.userid}, ${foods.data.american}, ${foods.data.asian_indian}, 
+        ${foods.data.cajun}, ${foods.data.hungarian}, ${foods.data.italian}, 
+        ${foods.data.mediterranean}, ${foods.data.latin_mexican}, ${foods.data.russian}, 
+        ${foods.data.middleeastern}, ${foods.data.slavic}, ${foods.data.romanian}, 
+        ${foods.data.other}, ${foods.data.french}, ${foods.data.cookies}, ${foods.data.french}, ${foods.data.cookies});`;
 
     return {foods, sql}
 
@@ -36,14 +36,14 @@ async function create(foods) {
 
 async function update(foods) {
     const sql = `UPDATE ${process.env.dbdatabase}.foods 
-        SET userid=${food.data.userid}, american=${food.data.american}, 
-        asian_indian=${food.data.asian_indian}, cajun=${food.data.cajun}, 
-        hungarian=${food.data.hungarian}, italian=${food.data.italian}, 
-        mediterranean=${food.data.mediterranean}, latin_mexican=${food.data.latin_mexican}, 
-        russian=${food.data.russian}, middleeastern=${food.data.middleeastern}, 
-        slavic=${food.data.slavic}, romanian=${food.data.romanian}, 
-        other=${food.data.other}, french=${food.data.french}, cookies=${food.data.cookies}, french=${food.data.french}, cookies=${food.data.cookies} 
-        WHERE userid=${food.data.userid};`;
+        SET userid=${foods.data.userid}, american=${foods.data.american}, 
+        asian_indian=${foods.data.asian_indian}, cajun=${foods.data.cajun}, 
+        hungarian=${foods.data.hungarian}, italian=${foods.data.italian}, 
+        mediterranean=${foods.data.mediterranean}, latin_mexican=${foods.data.latin_mexican}, 
+        russian=${foods.data.russian}, middleeastern=${foods.data.middleeastern}, 
+        slavic=${foods.data.slavic}, romanian=${foods.data.romanian}, 
+        other=${foods.data.other}, french=${foods.data.french}, cookies=${foods.data.cookies}, french=${foods.data.french}, cookies=${foods.data.cookies} 
+        WHERE userid=${foods.data.userid};`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
