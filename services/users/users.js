@@ -15,7 +15,7 @@ const select = `SELECT u.id as USERID, u.firstname, u.middlename, u.lastname, u.
     mov.id AS MOVID, mov.action, mov.comedy, mov.comics_animation, mov.documentary, mov.drama, mov.history, mov.mystery, 
     mov.nature, mov.news_worldaffairs, mov.religion, mov.romance, mov.scifi, mov.sports, 
     mov.suspense_thriller, mov.western, mov.other as movies_other, 
-    mus.id AS MUSID, mus.americanpop, mus.classical, mus.country_bluegrass, mus.flamenco_mariachi, mus.folk, mus.jazz, 
+    mus.id AS MUSID, mus.americanpop, mus.blues, mus.classical, mus.country_bluegrass, mus.disco, mus.flamenco_mariachi, mus.folk, mus.jazz, 
     mus.jpop_kpop, mus.metal, mus.polka, mus.rap_hiphop, mus.regae, mus.rock, mus.tribal, mus.other as music_other, 
     tech.id AS TECHID, tech.digitalart_media, tech.gamedevelopment, tech.officesoftwareproficiency, tech.softwaredevelopment, 
     tech.technicalwriting, tech.other as tech_other 
