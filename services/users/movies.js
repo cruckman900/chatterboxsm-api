@@ -39,7 +39,7 @@ async function update(movies) {
         SET userid=${movies.data.userid}, action=${movies.data.action}, comedy=${movies.data.comedy}, 
         comics_animation=${movies.data.comics_animation}, documentary=${movies.data.documentary}, 
         drama=${movies.data.drama}, history=${movies.data.history}, mystery=${movies.data.mystery}, 
-        nature=${movies.data.nature}, news_worldaffairs=${movies.data.news_worldaffairs}, religion=${movies.data.religion} 
+        nature=${movies.data.nature}, news_worldaffairs=${movies.data.news_worldaffairs}, religion=${movies.data.religion}, 
         romance=${movies.data.romance}, scifi=${movies.data.scifi}, sports=${movies.data.sports}, 
         suspense_thriller=${movies.data.suspense_thriller}, western=${movies.data.western}, other=${movies.data.other} 
         WHERE userid=${movies.data.userid};`;
