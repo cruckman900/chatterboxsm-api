@@ -51,7 +51,7 @@ async function update(activities) {
         singing_dancing=${activities.data.singing_dancing}, swimming=${activities.data.swimming}, 
         videogames=${activities.data.videogames}, walking_running=${activities.data.walking_running}, 
         watchingtv=${activities.data.watchingtv}, other=${activities.data.other} 
-        WHERE userid=${activities.data.userid};`;
+        WHERE id=${activities.data.id};`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
