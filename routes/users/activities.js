@@ -5,7 +5,7 @@ const activities = require('../../services/users/activities');
 /* GET activities */
 router.get('/', async function(req, res, next) {
     return new Promise(function() {
-        activities.getByUserID(req.query.userID)
+        activities.getByUserID(req.query.id)
             .then(result => res.json(result))
             .catch(err => res.json(err));
     });
