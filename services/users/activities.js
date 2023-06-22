@@ -45,7 +45,7 @@ async function update(activities) {
         boxing_wrestling=${activities.data.boxing_wrestling}, billiards_darts=${activities.data.billiards_darts}, 
         boating_camping=${activities.data.boating_camping}, classicsports=${activities.data.classicsports}, 
         cycling=${activities.data.cycling}, fishing_hunting=${activities.data.fishing_hunting}, 
-        hiking_camping=${activities.data.hiking_climbing}, machines_electronics=${activities.data.machines_electronics}, 
+        hiking_climbing=${activities.data.hiking_climbing}, machines_electronics=${activities.data.machines_electronics}, 
         martialarts=${activities.data.martialarts}, musicalinstruments=${activities.data.musicalinstruments}, 
         puzzles_games=${activities.data.puzzles_games}, reading_writing=${activities.data.reading_writing}, 
         singing_dancing=${activities.data.singing_dancing}, swimming=${activities.data.swimming}, 
