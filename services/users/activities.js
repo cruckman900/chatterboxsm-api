@@ -23,7 +23,7 @@ async function create(activities) {
         martialarts, musicalinstruments, puzzles_games, reading_writing, singing_dancing, 
         swimming, videogames, walking_running, watchingtv, other) 
         VALUES 
-        (${activities.data.userid}, ${activities.data.dataarchery_guns}, ${activities.data.arts_crafts}, 
+        (${activities.data.userid}, ${activities.data.archery_guns}, ${activities.data.arts_crafts}, 
         ${activities.data.bars_clubs}, ${activities.data.boxing_wrestling}, ${activities.data.billiards_darts}, 
         ${activities.data.boating_camping}, ${activities.data.classicsports}, ${activities.data.cycling}, 
         ${activities.data.fishing_hunting}, ${activities.data.hiking_climbing}, ${activities.data.machines_electronics}, 
