@@ -3,7 +3,7 @@ const db = require('../db');
 const select = `SELECT id, userid, archery_guns, arts_crafts, bars_clubs, boxing_wrestling, 
     billiards_darts, boating_camping, classicsports, cycling, fishing_hunting, hiking_climbing, 
     machines_electronics, martialarts, musicalinstruments, puzzles_games, reading_writing, 
-    singing_dancing, swimming, videogames, walking_running, watchingtb, other 
+    singing_dancing, swimming, videogames, walking_running, watchingtv, other 
     FROM ${process.env.dbdatabase}.activities `;
 
 async function getByUserID(id) {
@@ -50,7 +50,7 @@ async function update(activities) {
         puzzles_games=${activities.data.puzzles_games}, reading_writing=${activities.data.reading_writing}, 
         singing_dancing=${activities.data.singing_dancing}, swimming=${activities.data.swimming}, 
         videogames=${activities.data.videogames}, walking_running=${activities.data.walking_running}, 
-        other=${activities.data.other} 
+        watchingtv=${activities.data.watchingtv}, other=${activities.data.other} 
         WHERE userid=${activities.data.userid};`;
 
     return new Promise(function(resolve, reject) {
