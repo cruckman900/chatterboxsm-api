@@ -1,6 +1,6 @@
 const db = require('../db');
 
-const select = `id, userid, digitalart_media, gamedevelopment, officesoftwareproficiency, 
+const select = `SELECT id, userid, digitalart_media, gamedevelopment, officesoftwareproficiency, 
     softwaredevelopment, technicalwriting, other 
     FROM ${process.env.dbdatabase}.technicalaptitude `;
 
@@ -9,7 +9,7 @@ async function getByUserID(id) {
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
-            .then(result = resolve(result))
+            .then(result => resolve(result))
             .catch(err => reject(err));
     });
 }
