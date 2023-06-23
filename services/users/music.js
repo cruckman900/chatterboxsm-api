@@ -1,6 +1,6 @@
 const db = require('../db');
 
-const select = `SELECT id, userid, americanpop, blues, classical, country_bluegrass, flamenco_mariachi, 
+const select = `SELECT id, userid, americanpop, blues, classical, country_bluegrass, disco, flamenco_mariachi, 
     folk, jazz, jpop_kpop, metal, polka, rap_hiphop, regae, rock, tribal, other 
     FROM ${process.env.dbdatabase}.music `;
 

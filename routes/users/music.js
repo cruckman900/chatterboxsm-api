@@ -5,7 +5,7 @@ const music = require('../../services/users/music');
 /* GET music */
 router.get('/', async function(req, res, next) {
     return new Promise(function() {
-        music.getByUserID(req.query.userID)
+        music.getByUserID(req.query.id)
             .then(result => res.json(result))
             .catch(err => res.json(err));
     });
