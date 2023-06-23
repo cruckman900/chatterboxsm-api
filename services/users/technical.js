@@ -40,7 +40,7 @@ async function update(technical) {
     
     return new Promise(function(resolve, reject) {
         db.query(sql)
-            .thenI(result => resolve(result))
+            .then(result => resolve(result))
             .catch(err => reject(err));
     });
 }
