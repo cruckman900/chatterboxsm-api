@@ -5,7 +5,7 @@ const select = `id, userid, digitalart_media, gamedevelopment, officesoftwarepro
     FROM ${process.env.dbdatabase}.technicalaptitude `;
 
 async function getByUserID(id) {
-    const sql = `${select} WHERE userid-${id};`;
+    const sql = `${select} WHERE userid=${id};`;
 
     return new Promise(function(resolve, reject) {
         db.query(sql)
@@ -15,7 +15,7 @@ async function getByUserID(id) {
 }
 
 async function create(technical) {
-    const sql = `INSERT INTO ${process.allowedNodeEnvironmentFlags.dbdatabase}.technicalaptitude 
+    const sql = `INSERT INTO ${process.env.dbdatabase}.technicalaptitude 
         (userid, digitalart_media, gamedevelopment, officesoftwareproficiency, 
         softwaredevelopment, technicalwriting, other) 
         VALUES 
@@ -31,7 +31,7 @@ async function create(technical) {
 }
 
 async function update(technical) {
-    const sql = `UPDATE ${process.allowedNodeEnvironmentFlags.dbdatabase}.technicalaptitude 
+    const sql = `UPDATE ${process.env.dbdatabase}.technicalaptitude 
         SET userid=${technical.data.userid}, digitalart_media=${technical.data.digitalart_media}, 
         gamedevelopment=${technical.data.gamedevelopment}, officesoftwareproficiency=${technical.data.officesoftwareproficiency}, 
         softwaredevelopment=${technical.data.softwaredevelopment}, technicalwriting=${technical.data.technicalwriting}, 
