@@ -5,7 +5,7 @@ const systemsettings = require('../../services/users/systemsettings');
 /* GET systemsettings */
 router.get('/', async function(req, res, next) {
     return new Promise(function() {
-        systemsettings.getByUserID(req.query.userID)
+        systemsettings.getByUserID(req.query.id)
             .then(result => res.json(result))
             .catch(err => rejects(err));
     });

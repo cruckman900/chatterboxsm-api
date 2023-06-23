@@ -5,7 +5,7 @@ const technical = require('../../services/users/technical');
 /* GET technical */
 router.get('/', async function(req, res, next) {
     return new Promise(function() {
-        technical.getByUserID(req.query.userID)
+        technical.getByUserID(req.query.id)
             .then(result => res.json(result))
             .catch(err => res.json(err));
     });

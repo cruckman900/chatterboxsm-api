@@ -5,7 +5,7 @@ const locations = require('../../services/users/locations');
 /* GET locations */
 router.get('/', async function(req, res, next) {
     return new Promise(function() {
-        locations.getByUserID(req.query.userID)
+        locations.getByUserID(req.query.id)
             .then(result => res.json(result))
             .catch(err => res.json(err));
     });

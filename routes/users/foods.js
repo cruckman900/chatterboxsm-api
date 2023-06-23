@@ -5,7 +5,7 @@ const foods = require('../../services/users/foods');
 /* GET foods */
 router.get('/', async function(req, res, next) {
     return new Promise(function() {
-        foods.getByUserID(req.query.userID)
+        foods.getByUserID(req.query.id)
             .then(result => res.json(result))
             .catch(err => res.json(err));
     });
