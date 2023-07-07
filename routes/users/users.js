@@ -61,6 +61,15 @@ router.put('/', async function(req, res, next) {
     });
 });
 
+/* PATCH user */
+router.patch('/', async function(req, res, next) {
+    return new Promise(function() {
+        users.updatePassword(req.body)
+            .then(result => res.json(result))
+            .catch(err => res.json(err));
+    });
+})
+
 /* DELETE user */
 router.delete('/:id', async function(req, res, next) {
     return new Promise(function() {
