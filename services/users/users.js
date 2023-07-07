@@ -80,6 +80,16 @@ async function getByUsernameAndPassword(username, password) {
     });
 }
 
+async function getByEmailAndUsername(email, username) {
+    const sql = `${select} WHERE u.email="${email}" AND u.username="${username}";`;
+
+    return new Promise(function(resolve, reject) {
+        db.query(sql)
+            .then(result => resolve(result))
+            .catch(err => reject(err));
+    });
+}
+
 async function create(user) {
     const sql = `INSERT INTO ${process.env.dbdatabase}.users 
         (firstname, middlename, lastname, screenname, email, agerange, gender, 
@@ -127,6 +137,7 @@ module.exports = {
     getAll,
     getByID,
     getByUsernameAndPassword,
+    getByEmailAndUsername,
     create,
     update,
     remove

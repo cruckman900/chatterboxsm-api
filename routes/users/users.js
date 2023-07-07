@@ -16,6 +16,12 @@ router.get('/', async function(req, res, next) {
                 .then(result => res.json(result))
                 .catch(err => res.json(err));
         });
+    } else if (req.query.action === "getUserByEmailAndUsername") {
+        return new Promise(function() {
+            users.getByEmailAndUsername(req.query.email, req.query.username)
+                .then(result => resolve(result))
+                .catch(err => rejects(err));
+        });
     } else if (req.query.action === 'getCountUsers') {
         return new Promise(function() {
             users.getUserCount()
