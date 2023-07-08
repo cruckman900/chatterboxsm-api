@@ -86,7 +86,7 @@ async function getByEmailAndUsername(email, username) {
     return new Promise(function(resolve, reject) {
         db.query(sql)
             .then(result => resolve(result))
-            .catch(err => reject(err));
+            .catch(err => resolve(err));
     });
 }
 
