@@ -124,7 +124,7 @@ async function update(user) {
 async function updatePassword(user) {
     const sql = `UPDATE ${process.env.dbdatabase}.users
         SET password="${user.data.password}"
-        WHERE id=${user.data.id};`;
+        WHERE email="${user.data.email}" AND username="${user.data.username}";`;
     
     return new Promise(function(resolve, reject) {
         db.query(sql)
